@@ -9,7 +9,14 @@
     <title>Main Page</title>
   </head>
   <body>
-	</script>
+    <script>
+      document.body.style.zoom = window.innerWidth/1940;
+      
+      window.onresize = function(event){
+      var innerWidth = window.innerWidth;
+      document.body.style.zoom = innerWidth/1940;
+    }
+    </script>
     <!-- 최상단 --> 
       <div class="Nav" style="background-color: rgba(83, 99, 168, 1);">
       </div>

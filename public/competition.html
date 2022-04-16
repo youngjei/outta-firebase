@@ -12,6 +12,14 @@
     <title>Competition</title>
   </head>
   <body>
+    <script>
+      document.body.style.zoom = window.innerWidth / 1940;
+
+      window.onresize = function (event) {
+        var innerWidth = window.innerWidth;
+        document.body.style.zoom = innerWidth / 1940;
+      };
+    </script>
     <img src="Desktop - 12.png" id="main" />
 
     <a href="index.html"><img src="Group 893.png" class="frame" /></a>

@@ -13,6 +13,14 @@
   </head>
   <body>
     <!-- 최상단 -->
+    <script>
+      document.body.style.zoom = window.innerWidth / 1940;
+
+      window.onresize = function (event) {
+        var innerWidth = window.innerWidth;
+        document.body.style.zoom = innerWidth / 1940;
+      };
+    </script>
 
     <div class="container"></div>
     <a href="index.html"><img src="Group 893.png" class="frame" /></a>
