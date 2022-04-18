@@ -754,3 +754,7 @@ color: #4A4A4A;
         align-items: center;
         text-align: center;
         letter-spacing: -0.015em;}
+
+#cursoron{
+    cursor: pointer;
+}

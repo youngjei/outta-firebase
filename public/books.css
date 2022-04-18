@@ -351,3 +351,7 @@ li, ul, .bxslide{
 #bright1, #faded11, #faded21, #bright2, #faded12, #faded22{
     display: none;
 }
+
+#cursoron{
+    cursor: pointer;
+}
