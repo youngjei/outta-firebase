@@ -6,7 +6,7 @@ body{
 .container{
 position: relative;
 width: 1920px;
-height: 180px;
+height: 3350px;
 
 background: #FFFFFF;
 }
@@ -815,17 +815,13 @@ color: #6F6F6F;
     cursor: pointer;
 }
 
-.top{
-    width: 1920px;
-    height: 415px;
-    padding-left: 300px;
-    padding-top: 87px;
-}
-
 .title{
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 700;
+    position: absolute;
+    top: 249px;
+    left: 301px;
     font-size: 64px;
     line-height: 93px;
 }
@@ -833,30 +829,67 @@ color: #6F6F6F;
 .description{
     font-family: 'Noto Sans KR';
     font-style: normal;
+    position: absolute;
+    left: 301px;
+    top: 365px;
     font-weight: 400;
     font-size: 25px;
     line-height: 180%;
 }
 
-.dataset{
-    width: 1920px;
-    height: 600px;
-    left: 0px;
-    top: 0px;
-    position: relative;
-    padding-left: 300px;
+/*.dataset{
+    width: 1319px;
+    height: 431px;
+    left: 300px;
+    top: 691px;
+    position: absolute;
 
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 700;
     font-size: 40px;
     line-height: 58px;
+}*/
+
+#data{
+    position: absolute;
+    height: 58px;
+    left: 287px;
+    top: 581px;
+
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 58px;
+    /* identical to box height */
+
+
+    /* gray1 */
+
+    color: #4A4A4A;
+
 }
 
+/*
 .data-div{
     padding: 20px 30px 20px 30px;
     border: 2px solid #D5D5D5;
     border-radius: 10px;
+}*/
+
+.data-div{
+    /* Rectangle 616 */
+position: absolute;
+width: 1319px;
+height: 431px;
+left: 300px;
+top: 691px;
+
+background: #FFFFFF;
+border: 2px solid #D5D5D5;
+box-sizing: border-box;
+border-radius: 10px;
 }
 
 th{
