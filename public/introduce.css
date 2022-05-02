@@ -729,3 +729,16 @@ color: #000000;
     /* or 27px */
     color: #6E6E6E;
 }
+
+.edu_1{
+    position: absolute;
+    left: 1214px;
+    top: 1999px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 22px;
+    text-align: center;
+    color: #000000;
+}
