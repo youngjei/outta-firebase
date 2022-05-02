@@ -48,7 +48,7 @@ $(document).on('click', '#bl2, #al2' ,function(e) {
   HoverChange('#bl1, #al1','#bl1','#al1');
   HoverChange('#bl3, #al3','#bl3','#al3');
   HoverChange('#bl4, #al4','#bl4','#al4');
-  window.scrollTo({ left: 576, top: 1574, behavior: "smooth" });
+  window.scrollTo({ left: 0, top: 1574, behavior: "smooth" });
 })
 
 $(document).on('click', '#bl3, #al3' ,function(e) {
@@ -60,7 +60,7 @@ $(document).on('click', '#bl3, #al3' ,function(e) {
   HoverChange('#bl1, #al1','#bl1','#al1');
   HoverChange('#bl2, #al2','#bl2','#al2');
   HoverChange('#bl4, #al4','#bl4','#al4');
-  window.scrollTo({ left: 576, top: 3380, behavior: "smooth" });
+  window.scrollTo({ left: 0, top: 3380, behavior: "smooth" });
 })
 
 $(document).on('click', '#bl4, #al4' ,function(e) {
@@ -72,7 +72,7 @@ $(document).on('click', '#bl4, #al4' ,function(e) {
   HoverChange('#bl1, #al1','#bl1','#al1');
   HoverChange('#bl2, #al2','#bl2','#al2');
   HoverChange('#bl3, #al3','#bl3','#al3');
-  window.scrollTo({ left: 576, top: 4889, behavior: "smooth" });
+  window.scrollTo({ left: 0, top: 4889, behavior: "smooth" });
 })
 
 // 버튼 구현 완료
