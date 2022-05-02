@@ -8,6 +8,13 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="introduce.js"></script>
+    <script>
+      document.body.style.zoom = window.innerWidth/1940;
+      window.onresize = function(event){
+        var innerWidth = window.innerWidth;
+        document.body.style.zoom = innerWidth/1940;
+      }
+    </script>
     <meta charset="utf-8" />
     <title>Team OUTTA</title>
   </head>
