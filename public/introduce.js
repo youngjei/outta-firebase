@@ -36,6 +36,7 @@ $(document).on('click', '#bl1, #al1' ,function(e) {
   HoverChange('#bl2, #al2','#bl2','#al2');
   HoverChange('#bl3, #al3','#bl3','#al3');
   HoverChange('#bl4, #al4','#bl4','#al4');
+  $('html, body').animate({ scrollTop: $(document).height()-1000},25000);
 })
 
 $(document).on('click', '#bl2, #al2' ,function(e) {
@@ -47,6 +48,7 @@ $(document).on('click', '#bl2, #al2' ,function(e) {
   HoverChange('#bl1, #al1','#bl1','#al1');
   HoverChange('#bl3, #al3','#bl3','#al3');
   HoverChange('#bl4, #al4','#bl4','#al4');
+  window.scrollTo({ left: 576, top: 1574, behavior: "smooth" });
 })
 
 $(document).on('click', '#bl3, #al3' ,function(e) {
@@ -58,6 +60,7 @@ $(document).on('click', '#bl3, #al3' ,function(e) {
   HoverChange('#bl1, #al1','#bl1','#al1');
   HoverChange('#bl2, #al2','#bl2','#al2');
   HoverChange('#bl4, #al4','#bl4','#al4');
+  window.scrollTo({ left: 576, top: 3380, behavior: "smooth" });
 })
 
 $(document).on('click', '#bl4, #al4' ,function(e) {
@@ -69,11 +72,12 @@ $(document).on('click', '#bl4, #al4' ,function(e) {
   HoverChange('#bl1, #al1','#bl1','#al1');
   HoverChange('#bl2, #al2','#bl2','#al2');
   HoverChange('#bl3, #al3','#bl3','#al3');
+  window.scrollTo({ left: 576, top: 4889, behavior: "smooth" });
 })
 
 // 버튼 구현 완료
 
-//img click
+// img click
 jQuery.fn.centerpos = function (a, b) {
   this.css("position","absolute");
   this.css("top", Math.max(0, a + (($(window).height() - $(this).outerHeight()) / 2) + 
@@ -102,7 +106,7 @@ function DeleteImage(a){
   })
 }
 
-//board + edu
+// board + edu
 ClickImage('#김지원', '.김지원, .name_0, .job_0, .maxim_0', '.김지원', '.name_0', '.job_0', '.maxim_0', 32)
 DeleteImage('.김지원, .name_0, .job_0, .maxim_0')
 ClickImage('#서주호', '.서주호, .name_1, .job_0, .maxim_1', '.서주호', '.name_1', '.job_0', '.maxim_1', 32)
@@ -126,7 +130,7 @@ DeleteImage('.조민지, .name_9, .job_2, .maxim_9')
 ClickImage('#한창희', '.한창희, .name_10, .job_2, .maxim_10', '.한창희', '.name_10', '.job_2', '.maxim_10', 34)
 DeleteImage('.한창희, .name_10, .job_2, .maxim_10')
 
-//mentor
+// mentor
 ClickImage('#김수연', '.김수연, .name_11, .job_3, .maxim_11', '.김수연', '.name_11', '.job_3', '.maxim_11', 34)
 DeleteImage('.김수연, .name_11, .job_3, .maxim_11')
 ClickImage('#손수환', '.손수환, .name_12, .job_3, .maxim_12', '.손수환', '.name_12', '.job_3', '.maxim_12', 34)
@@ -146,7 +150,7 @@ DeleteImage('.조성민, .name_18, .job_3, .maxim_18')
 ClickImage('#하성수', '.하성수, .name_19, .job_3, .maxim_19', '.하성수', '.name_19', '.job_3', '.maxim_19', 34)
 DeleteImage('.하성수, .name_19, .job_3, .maxim_19')
 
-//design + tech
+// design + tech
 ClickImage('#박인서', '.박인서, .name_20, .job_4, .maxim_20', '.박인서', '.name_20', '.job_4', '.maxim_20', 33)
 DeleteImage('.박인서, .name_20, .job_4, .maxim_20')
 ClickImage('#오혜민', '.오혜민, .name_21, .job_4, .maxim_21', '.오혜민', '.name_21', '.job_4', '.maxim_21', 33)
@@ -170,7 +174,7 @@ DeleteImage('.이영제, .name_29, .job_5, .maxim_29')
 ClickImage('#최민우', '.최민우, .name_30, .job_5, .maxim_30', '.최민우', '.name_30', '.job_5', '.maxim_30', 32)
 DeleteImage('.최민우, .name_30, .job_5, .maxim_30')
 
-//sns
+// sns
 ClickImage('#김민정', '.김민정, .name_31, .job_6, .maxim_31', '.김민정', '.name_31', '.job_6', '.maxim_31', 32)
 DeleteImage('.김민정, .name_31, .job_6, .maxim_31')
 ClickImage('#김주현', '.김주현, .name_32, .job_6, .maxim_32', '.김주현', '.name_32', '.job_6', '.maxim_32', 32)
@@ -182,7 +186,7 @@ DeleteImage('.이정은, .name_34, .job_6, .maxim_34')*/
 ClickImage('#홍수진', '.홍수진, .name_35, .job_6, .maxim_35', '.홍수진', '.name_35', '.job_6', '.maxim_35', 32)
 DeleteImage('.홍수진, .name_35, .job_6, .maxim_35')
 
-//video
+// video
 ClickImage('#박수민', '.박수민, .name_36, .job_7, .maxim_36', '.박수민', '.name_36', '.job_7', '.maxim_36', 30)
 DeleteImage('.박수민, .name_36, .job_7, .maxim_36')
 ClickImage('#박지안', '.박지안, .name_37, .job_7, .maxim_37', '.박지안', '.name_37', '.job_7', '.maxim_37', 30)
