@@ -7,7 +7,8 @@ body
 {
     position: relative;
     width: 1920px;
-    height: 6501px;
+    height: 6934px;
+    top:200px;
 
     background: #FFFFFF;
 }
@@ -220,8 +221,8 @@ body
     position: absolute;
     width: 262px;
     height: 37px;
-    left: 72px;
-    top: 6356px;
+    left: 73.5px;
+    top: 6993px;
     display:flex;
     flex-direction: row;
     gap: 38px;
@@ -274,17 +275,15 @@ body
 
 .applyer{
     position: absolute;
-    width: 338px;
-    height: 50px;
-    left: 797px;
-    top: 5773px;
+    width: 600px;
+    height: 500px;
+    left: 770px;
+    top: 6450px;
+}
+.applyer img{
+    height : 55px;
 }
 
-.direc{ 
-    position: absolute;
-    top:5787.67px;
-    left:1032px;
-}
 
 
 .giho{
