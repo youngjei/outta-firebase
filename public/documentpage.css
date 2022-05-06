@@ -857,16 +857,6 @@ color: #6F6F6F;
     padding: 20px 30px 20px 30px;
     border: 2px solid #D5D5D5;
     border-radius: 10px;
-    width: 1100px;
-}
-
-.data-cbox{
-    padding: 20px 30px 20px 30px;
-}
-
-.tables{
-    display: flex;
-    flex-direction: row;
 }
 
 th{
@@ -886,38 +876,5 @@ tr{
 }
 
 #tbody1 th{
-    background: #EFF1FF;
-}
-
-#cbox1 th{
-    background: #EFF1FF;
-}
-
-.skeleton{
-    width: 1320px;
-    height: 600px;
-    left: 0px;
-    top: 0px;
-    position: relative;
-    padding-left: 300px;
-
-    font-family: 'Noto Sans KR';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 58px;
-}
-
-.skel-div{
-    padding: 20px 30px 20px 30px;
-    border: 2px solid #D5D5D5;
-    border-radius: 10px;
-    background-color: #EFF1FF;
-}
-
-#tbody2 th{
-    background: #FFFFFF;
-}
-#cbox2 th{
     background: #EFF1FF;
 }

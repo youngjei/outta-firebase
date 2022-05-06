@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-storage.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -58,6 +58,19 @@ function WeightChange(a){
   const db = getFirestore();
   const colRef = collection(db, 'datasets');
 
+  var count = 0;
+  onSnapshot(colRef, (snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      count++;
+      if(doc.id==postid){
+        document.getElementById('title').value = doc.data().제목;
+        document.getElementById('body').value = doc.data().내용;
+        document.getElementById('filelink').text = doc.data().파일명;
+        document.getElementById('filelink').href = doc.data().파일;
+      }
+    });
+  });
+
   var files = [];
 
   var fileInput = document.getElementById('file');
@@ -66,15 +79,19 @@ function WeightChange(a){
     files = e.target.files;
     console.log(files);
   };
-    console.log(files);
-
+  var postid = localStorage.getItem("postid")
+  console.log(postid)
   post.addEventListener('click',(e) => {
     var title = document.getElementById('title').value;
     var body = document.getElementById('body').value;
+    var filename = document.getElementById('filelink').text
+    var filelink = document.getElementById('filelink').href
     
-    if(files.length==0){ 
+    if(files.length==0){
+      if(postid==null)  {
         alert("No file selected");
         return
+      }
     }
     if(title==""){
         alert("Input Title");
@@ -84,64 +101,110 @@ function WeightChange(a){
         alert("Input Body");
         return
     }
-
-    const storage = getStorage();
-
-    const storageRef = ref(storage, "datasets/"+files[0].name);
-
-    console.log(title);
-    console.log(body);
-    console.log(files[0]);
-
-    // uploadBytes(storageRef, files[0]).then((snapshot) => {
-    //   console.log('Uploaded a blob or file!');
-    // });
-    const uploadTask = uploadBytesResumable(storageRef, files[0]);
-
-    // Listen for state changes, errors, and completion of the upload.
-    uploadTask.on('state_changed',
-    (snapshot) => {
-      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log('Upload is ' + progress + '% done');
-      switch (snapshot.state) {
-        case 'paused':
-          console.log('Upload is paused');
-          break;
-        case 'running':
-          console.log('Upload is running');
-          break;
-      }
-    }, 
-    (error) => {
-      // A full list of error codes is available at
-      // https://firebase.google.com/docs/storage/web/handle-errors
-      switch (error.code) {
-        case 'storage/unauthorized':
-          // User doesn't have permission to access the object
-          break;
-        case 'storage/canceled':
-          // User canceled the upload
-          break;
-
-        // ...
-
-        case 'storage/unknown':
-          // Unknown error occurred, inspect error.serverResponse
-          break;
-      }
-    }, 
-    () => {
-      // Upload completed successfully, now we can get the download URL
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        addDoc(colRef, {
-            제목: title,
-            내용: body,
-            파일: downloadURL,
-            작성일: serverTimestamp()
-        });
+    console.log(files.length);
+    if(files.length==0){
+      console.log("HERE1")
+      updateDoc(doc(db, "datasets", postid), {
+        제목: title,
+        내용: body
+      }).then(function() {
+        setTimeout(function() {
+          alert("Document successfully updated!");
+          location.href = "document.html";
+          }, 1000);
+      })
+      .catch(function(error) {
+          console.error("Error writing document: ", error);
       });
     }
-    );
-    alert("Post done");
+    else{
+      console.log("HERE2")
+      const storage = getStorage();
+
+      const storageRef = ref(storage, "datasets/"+files[0].name);
+
+      console.log(title);
+      console.log(body);
+      console.log(files[0]);
+
+      // uploadBytes(storageRef, files[0]).then((snapshot) => {
+      //   console.log('Uploaded a blob or file!');
+      // });
+      const uploadTask = uploadBytesResumable(storageRef, files[0]);
+
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on('state_changed',
+      (snapshot) => {
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      }, 
+      (error) => {
+        console.log(error)
+        // A full list of error codes is available at
+        // https://firebase.google.com/docs/storage/web/handle-errors
+        switch (error.code) {
+          case 'storage/unauthorized':
+            // User doesn't have permission to access the object
+            break;
+          case 'storage/canceled':
+            // User canceled the upload
+            break;
+
+          // ...
+
+          case 'storage/unknown':
+            // Unknown error occurred, inspect error.serverResponse
+            break;
+        }
+      }, 
+      () => {
+        // Upload completed successfully, now we can get the download URL
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          if(postid==null){
+            addDoc(colRef, {
+                번호: count+1,
+                제목: title,
+                내용: body,
+                파일명: files[0].name,
+                파일: downloadURL,
+                작성일: serverTimestamp()
+            }).then(function() {
+              setTimeout(function() {
+                alert("Document successfully written!");
+                location.href = "document.html";
+                }, 1000);
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+          }
+          else{
+            updateDoc(doc(db, "datasets", postid), {
+              제목: title,
+              내용: body,
+              파일명: files[0].name,
+              파일: downloadURL
+            }).then(function() {
+              setTimeout(function() {
+                alert("Document successfully updated!");
+                location.href = "document.html";
+                }, 1000);
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+          }
+        });
+      }
+      );
+    };
 });

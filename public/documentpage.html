@@ -4,15 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="documentpost.css" rel="stylesheet">
+    <link href="documentpage.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type = module src="documentpost.js"></script>
+    <script type = module src="documentpage.js"></script>
     <title>Document</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container"></div>
       <div class="giho">WHAT WE DO >> 자료실</div>
 
       <a href="index.html"><img src="Group 893.png" class="frame"></a>
@@ -82,20 +81,12 @@
         데이터셋 파일과 스켈레톤 코드가 있습니다.
       </div>
     </div>
-    <div class="container2">
-        <div class="title2">데이터셋</div>
-        <div class="form">
-            <input 
-            type="text" 
-            placeholder="제목" 
-            name="title"
-            id="title"
-            style="width: 100%"/>
-            <textarea name="body" id="body" placeholder="내용" rows="10" style="width: 100%"></textarea>
-            <input type="file" id="file" name="file" multiple/>
-            <div>첨부파일:<div><a id="filelink"></a>
-            <input type="submit" id="post" name="post" value="post"/>
-        </div>
+    <div class="dataset">
+      <div>데이터셋</div>
+      <div class="data-div">
+        <table id="tbody1">
+        </table>
+      </div>
     </div>
   </body>
 </html>
