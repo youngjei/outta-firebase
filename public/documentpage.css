@@ -853,28 +853,82 @@ color: #6F6F6F;
     line-height: 58px;
 }
 
-.data-div{
-    padding: 20px 30px 20px 30px;
+.page-div{
+    padding: 20px 30px 0px 30px;
     border: 2px solid #D5D5D5;
     border-radius: 10px;
-}
+    margin-top: 40px;
 
-th{
+    font-family: 'Noto Sans KR';
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 25px;
     line-height: 36px;
+
+    color: #000000;
+}
+
+#title{
+    background: #EFF1FF;
+    padding: 10px;
+    font-weight: 700;
     text-align: center;
 }
 
-tr{
-    font-family: 'Noto Sans KR';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 25px;
+#date{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 10px 50px 10px 10px;
+    height: 50px;
+    border-bottom: 2px solid #DDDFEA;
 }
 
-#tbody1 th{
-    background: #EFF1FF;
+#body{
+    min-height: 330px;
+    padding: 30px 10px 10px 50px;
+    border-bottom: 2px solid #DDDFEA;
+}
+
+#file{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 20px 10px 20px 50px;
+}
+
+#filelink{
+    margin-left: 50px;
+}
+
+.buttons{
+    padding-top: 50px;
+    text-align: left;
+}
+
+button{
+    padding: 13px 44px 13px 44px;
+    background: #FFFFFF;
+    border: 1px solid #4558FF;
+    border-radius: 10px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #4558FF;
+    margin: 10px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4558FF;
+    color: #FFFFFF;
+  }
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }

@@ -838,10 +838,136 @@ color: #6F6F6F;
 }
 
 .container2{
-    width: 1920px;
+    width: 1320px;
     height: 600px;
     left: 0px;
     top: 0px;
-    background: gray;
     position: relative;
+    padding-left: 300px;
+    
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.form{
+    background: #EFF1FF;
+    border-radius: 10px;
+    padding: 50px 45px 60px 60px;
+    margin-top: 40px;
+}
+
+.jaemok{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.desc{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 50px;
+}
+
+.drag{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.left{
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 36px;
+    width: 50px;
+
+    color: #000000;
+}
+
+.right{
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 36px;
+
+
+    margin-left: 45px;
+    width: 100%;
+}
+
+#title{
+    height: 50px;
+    width: 960px;
+    border-radius: 5px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 36px;
+    border: none;
+    padding: 10px;
+}
+
+#body{
+    height: 660px;
+    width: 100%;
+    border-radius: 5px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 36px;
+    border: none;
+    padding: 10px;
+    resize: none;
+}
+
+#file{
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 36px;
+}
+
+#filelink{
+    margin-right: 50px;
+}
+
+.buttons{
+    padding-top: 50px;
+    text-align: right;
+}
+
+button{
+    padding: 13px 44px 13px 44px;
+    background: #FFFFFF;
+    border: 1px solid #4558FF;
+    border-radius: 10px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #4558FF;
+    margin: 10px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4558FF;
+    color: #FFFFFF;
+  }
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }

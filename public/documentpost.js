@@ -57,12 +57,13 @@ function WeightChange(a){
 
   const db = getFirestore();
   const colRef = collection(db, 'datasets');
+  var postid = localStorage.getItem("postid");
 
-  var count = 0;
   onSnapshot(colRef, (snapshot) => {
     snapshot.docs.forEach((doc) => {
-      count++;
-      if(doc.id==postid){
+      console.log(doc.id)
+      if(doc.id===postid){
+        console.log("filling data");
         document.getElementById('title').value = doc.data().제목;
         document.getElementById('body').value = doc.data().내용;
         document.getElementById('filelink').text = doc.data().파일명;
@@ -70,6 +71,15 @@ function WeightChange(a){
       }
     });
   });
+
+  const delbutton = document.getElementById("delete")
+
+  if(postid==null){
+    delbutton.disabled = true;
+  }
+  else{
+    delbutton.disabled = false;
+  }
 
   var files = [];
 
@@ -79,13 +89,14 @@ function WeightChange(a){
     files = e.target.files;
     console.log(files);
   };
-  var postid = localStorage.getItem("postid")
-  console.log(postid)
-  post.addEventListener('click',(e) => {
+
+  const savebtn = document.getElementById("save");
+
+  savebtn.addEventListener('click',(e) => {
     var title = document.getElementById('title').value;
     var body = document.getElementById('body').value;
-    var filename = document.getElementById('filelink').text
-    var filelink = document.getElementById('filelink').href
+    var filename = document.getElementById('filelink').text;
+    var filelink = document.getElementById('filelink').href;
     
     if(files.length==0){
       if(postid==null)  {
@@ -111,7 +122,7 @@ function WeightChange(a){
         setTimeout(function() {
           alert("Document successfully updated!");
           location.href = "document.html";
-          }, 1000);
+          }, 50);
       })
       .catch(function(error) {
           console.error("Error writing document: ", error);
@@ -171,7 +182,6 @@ function WeightChange(a){
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           if(postid==null){
             addDoc(colRef, {
-                번호: count+1,
                 제목: title,
                 내용: body,
                 파일명: files[0].name,
@@ -181,7 +191,7 @@ function WeightChange(a){
               setTimeout(function() {
                 alert("Document successfully written!");
                 location.href = "document.html";
-                }, 1000);
+                }, 50);
             })
             .catch(function(error) {
                 console.error("Error writing document: ", error);
@@ -197,7 +207,7 @@ function WeightChange(a){
               setTimeout(function() {
                 alert("Document successfully updated!");
                 location.href = "document.html";
-                }, 1000);
+                }, 50);
             })
             .catch(function(error) {
                 console.error("Error writing document: ", error);
@@ -207,4 +217,15 @@ function WeightChange(a){
       }
       );
     };
+});
+
+$(document).on("click","#delete",async function(){
+  await deleteDoc(doc(db, "datasets", postid));
+  alert("Deleted");
+
+  location.href="document.html";
+});
+
+$(document).on("click","#cancel",async function(){
+  location.href="document.html";
 });

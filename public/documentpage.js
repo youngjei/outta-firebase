@@ -56,40 +56,35 @@ function WeightChange(a){
   const db = getFirestore();
   const colRef = collection(db, 'datasets');
 
-  const q = query(colRef, orderBy("번호", "desc"));
+  const q = query(colRef, orderBy("작성일", "desc"));
 
-   var pageid = localStorage.getItem("pageid")
-
-   console.log(pageid);
-   console.log("HIHIHI");
+   var postid = localStorage.getItem("postid");
 
    onSnapshot(q, (snapshot) => {
     snapshot.docs.forEach((doc) => {
-      var id = doc.data().번호;
+      var id = doc.id;
       var title = doc.data().제목;
       var body = doc.data().내용;
       var date = new Date(doc.data().작성일.seconds*1000).toISOString().split('T')[0];
+      var filename = doc.data().파일명;
       var download = doc.data().파일;
-      console.log("File "+pageid+": " +title,body,date,download);
-      if(pageid == id){ 
-        LoadPage(title,date,body,download);
-        localStorage.removeItem("pageid")
+      if(postid == id){ 
+        LoadPage(title,date,body,filename,download);
      }
     });
   });
-  function LoadPage(title,date,body,download){
-      var tbody = document.getElementById('tbody1');
-      var trow1 = document.createElement('tr');
-      var trow2 = document.createElement('tr');
-      var trow3 = document.createElement('tr');
-      var trow4 = document.createElement('tr');
+  function LoadPage(title,date,body,filename,download){
+      var titlediv = document.getElementById('title');
+      var datediv = document.getElementById('date');
+      var bodydiv = document.getElementById('body');
+      var filediv = document.getElementById('file');
 
-      trow1.innerHTML = title;
-      trow2.innerHTML = date;
-      trow3.innerHTML = body;
-      trow4.innerHTML = `<div>첨부파일:<div><a href="${download}">${title}</a>`;
-      tbody.appendChild(trow1);
-      tbody.appendChild(trow2);
-      tbody.appendChild(trow3);
-      tbody.appendChild(trow4);
+      titlediv.innerHTML = title;
+      datediv.innerHTML = "작성일: "+date;
+      bodydiv.innerHTML = body;
+      filediv.innerHTML = `<div>첨부파일:</div><a id="filelink" href="${download}">${filename}</a>`;
   }
+
+  $(document).on("click","#doclist",async function(){
+    location.href="document.html";
+  });

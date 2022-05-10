@@ -840,7 +840,7 @@ color: #6F6F6F;
 
 .dataset{
     width: 1320px;
-    height: 600px;
+    height: auto;
     left: 0px;
     top: 0px;
     position: relative;
@@ -854,19 +854,28 @@ color: #6F6F6F;
 }
 
 .data-div{
-    padding: 20px 30px 20px 30px;
+    padding: 40px 40px 40px 40px;
     border: 2px solid #D5D5D5;
     border-radius: 10px;
     width: 1100px;
 }
 
 .data-cbox{
-    padding: 20px 30px 20px 30px;
+    padding: 40px 45px 40px 45px;
+    width: 120px;
+
 }
 
 .tables{
     display: flex;
     flex-direction: row;
+    padding-top: 50px;
+}
+
+table{
+    width: 100%;
+    border: none;
+    border-collapse: collapse; 
 }
 
 th{
@@ -875,27 +884,141 @@ th{
     font-weight: 500;
     font-size: 25px;
     line-height: 36px;
+    padding:10px;
     text-align: center;
+    
 }
 
 tr{
+    height: 75px;
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 25px;
 }
 
+td{
+    text-align: center;
+}
+
+td img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70px;
+    height: 50px;
+}
+
+.num{
+    width: 108px;
+}
+
+.jaemok{
+    text-align: left;
+    padding-left: 50px;
+}
+
+.date{
+    width: 216px;
+}
+
+.down{
+    width: 162px;
+}
+
 #tbody1 th{
     background: #EFF1FF;
+}
+
+#tbody1 tr{
+    border-bottom: 1px solid #EFF1FF;
 }
 
 #cbox1 th{
     background: #EFF1FF;
 }
 
+
+.cbox-container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+.cbox-container input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    display: block;
+    position: relative;
+    height: 30px;
+    width: 30px;
+    background-color: #DFE2FF;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.cbox-container input ~ .checkmark {
+    background-color: #DFE2FF;
+}
+
+.cbox-container input:checked ~ .checkmark {
+    background-color: #4558FF;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.buttons{
+    padding-top: 50px;
+    text-align: right;
+}
+
+button{
+    padding: 13px 44px 13px 44px;
+    background: #FFFFFF;
+    border: 1px solid #4558FF;
+    border-radius: 10px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #4558FF;
+    margin: 10px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4558FF;
+    color: #FFFFFF;
+  }
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .skeleton{
     width: 1320px;
-    height: 600px;
+    height: auto;
     left: 0px;
     top: 0px;
     position: relative;
