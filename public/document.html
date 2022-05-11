@@ -11,6 +11,13 @@
     <title>Document</title>
   </head>
   <body>
+    <script>
+      document.body.style.zoom = window.innerWidth / 1920;
+      window.onresize = function (event) {
+        var innerWidth = window.innerWidth;
+        document.body.style.zoom = innerWidth / 1920;
+      };
+    </script>
     <div class="container"></div>
       <div class="giho">WHAT WE DO >> 자료실</div>
 
@@ -110,15 +117,29 @@
     </div>
     <div class="skeleton">
       <div>스켈레톤</div>
-      <div class="skel-div">
-        <table id="tbody2">
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성일</th>
-            <th>다운로드</th>
-          </tr>
-        </table>
+      <div class="tables">
+        <div class="skel-div">
+          <table id="tbody2">
+            <tr>
+              <th>번호</th>
+              <th>제목</th>
+              <th>작성일</th>
+              <th>다운로드</th>
+            </tr>
+          </table>
+        </div>
+        <div class="skel-cbox">
+          <table id="cbox2">
+            <tr>
+              <th>선택</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="buttons">
+        <button type="button" id="skel-post">쓰기</button>
+        <button type="button" id="skel-edit">수정</button>
+        <button type="button" id="skel-del">삭제</button>
       </div>
     </div>
 

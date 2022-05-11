@@ -58,7 +58,7 @@ function WeightChange(a){
 
   const q = query(colRef, orderBy("작성일", "desc"));
 
-   var postid = localStorage.getItem("postid");
+   var postid = localStorage.getItem("postid1");
 
    onSnapshot(q, (snapshot) => {
     snapshot.docs.forEach((doc) => {

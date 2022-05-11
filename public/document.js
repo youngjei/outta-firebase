@@ -23,7 +23,15 @@ $(document).on('click', 'a.datapage', function(){
     var rowidx = currentRow.index();
     var cboxrow = $("#cbox1").find('tr').eq(rowidx);
     var id = cboxrow.find('.datacbox').val();
-    localStorage.setItem("postid", id);
+    localStorage.setItem("postid1", id);
+});
+
+$(document).on('click', 'a.skelpage', function(){
+    var currentRow = $(this).closest('tr');
+    var rowidx = currentRow.index();
+    var cboxrow = $("#cbox2").find('tr').eq(rowidx);
+    var id = cboxrow.find('.skelcbox').val();
+    localStorage.setItem("postid2", id);
 });
 
 $(document).on('mouseenter', '.onetex' ,function(e) {
@@ -62,13 +70,12 @@ function WeightChange(a){
   WeightChange('.thione');
 
   const db = getFirestore();
-  const colRef = collection(db, 'datasets');
+  const colRef1 = collection(db, 'datasets');
+  const colRef2 = collection(db, 'skeleton');
 
-  const q = query(colRef, orderBy("작성일", "desc"));
+  const q1 = query(colRef1, orderBy("작성일", "desc"));
+  const q2 = query(colRef2, orderBy("작성일", "desc"));
 
-  console.log(q);
-
-  
   /*onSnapshot(q, (snapshot) => {
       resetTables('tbody1','cbox1');
     snapshot.docs.forEach((doc) => {
@@ -84,7 +91,7 @@ function WeightChange(a){
   });*/
 
 
-  async function loadTables(tableid,cboxid){
+  async function loadTables1(tableid,cboxid,q){
     resetTables(tableid,cboxid)
     console.log("Load");
     const querySnapshot = await getDocs(q);
@@ -98,14 +105,14 @@ function WeightChange(a){
         var date = new Date(doc.data().작성일.seconds*1000).toISOString().split('T')[0];
         var download = doc.data().파일;
         console.log("File "+id+": " +title,body,date,download);
-        AddItemsToTable(tableid,cboxid,id,num,title,date,download);
+        AddItemsToTable1(tableid,cboxid,id,num,title,date,download);
     });
   }
 
-  loadTables('tbody1','cbox1');
+  loadTables1('tbody1','cbox1',q1);
 
 
-  function AddItemsToTable(tableid,cboxid,id,num,title,date,download){
+  function AddItemsToTable1(tableid,cboxid,id,num,title,date,download){
       var tbody = document.getElementById(tableid);
       var trow = document.createElement('tr');
       var td1 = document.createElement('td');
@@ -156,10 +163,10 @@ function WeightChange(a){
             }
         }
         if(datasel.length==1){
-            postbutton.disabled = false;
+            postbutton1.disabled = false;
         }
         else{
-            postbutton.disabled = true;
+            postbutton1.disabled = true;
         }
     });
 
@@ -167,23 +174,121 @@ $(document).on("click","#data-del",async function(){
     for(let i = 0; i < datasel.length; i++){
         await deleteDoc(doc(db, "datasets", datasel[i]));
     }
-    loadTables('tbody1','cbox1');
+    loadTables1('tbody1','cbox1',q1);
     alert("Deleted");
 });
 
-const postbutton = document.getElementById("data-edit");
-postbutton.disabled = true;
+const postbutton1 = document.getElementById("data-edit");
+postbutton1.disabled = true;
 
 
 $("#data-post").click(function(){ 
-    localStorage.removeItem("postid");
+    localStorage.removeItem("postid1");
     location.href="documentpost.html";
 });
 
 
 $("#data-edit").click(function(){ 
-    localStorage.setItem("postid",datasel[0]);
+    localStorage.setItem("postid1",datasel[0]);
     location.href="documentpost.html";
 });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+async function loadTables2(tableid,cboxid,q){
+    resetTables(tableid,cboxid)
+    console.log("Load");
+    const querySnapshot = await getDocs(q);
+    var count = querySnapshot.docs.length;
+    querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+        var id = doc.id;
+        var num = count--;
+        var title = doc.data().제목;
+        var body = doc.data().내용;
+        var date = new Date(doc.data().작성일.seconds*1000).toISOString().split('T')[0];
+        var download = doc.data().파일;
+        console.log("File "+id+": " +title,body,date,download);
+        AddItemsToTable2(tableid,cboxid,id,num,title,date,download);
+    });
+  }
+
+function AddItemsToTable2(tableid,cboxid,id,num,title,date,download){
+    var tbody = document.getElementById(tableid);
+    var trow = document.createElement('tr');
+    var td1 = document.createElement('td');
+    var td2 = document.createElement('td');
+    var td3 = document.createElement('td'); // <td><td>
+    var td4 = document.createElement('td');
+    td1.className = "num";
+    td2.className = "jaemok";
+    td3.className = "date";
+    td4.className = "down";
+    td1.innerHTML = num;
+    td2.innerHTML = `<a href="skeletonpage.html" class="skelpage">${title}</a>`;
+    td3.innerHTML = date;
+    td4.innerHTML = `<a href="${download}"><img src="down.png"></a>`;
+    trow.appendChild(td1);
+    trow.appendChild(td2);
+    trow.appendChild(td3);
+    trow.appendChild(td4);
+    tbody.appendChild(trow);
+
+    var cbox = document.getElementById(cboxid);
+    var cboxrow = document.createElement('tr');
+    cboxrow.className = "cboxrow"
+    var cbox1 = document.createElement('td');
+    cbox1.innerHTML = `<label class="cbox-container"><input class="skelcbox" type="checkbox" value=${id}><span class="checkmark"></span></label>`;
+    cboxrow.appendChild(cbox1);
+    cbox.appendChild(cboxrow);
+}
+
+loadTables2('tbody2','cbox2',q2);
+
+var skelsel = [];
+
+const postbutton2 = document.getElementById("skel-edit");
+postbutton2.disabled = true;
+
+  $(document).on('change', '.skelcbox', function() {
+    skelsel = [];
+        var checkboxes = document.getElementsByClassName("skelcbox");
+        for(var i = 0; i < checkboxes.length; i++)  
+        {
+            if(checkboxes[i].checked){
+                skelsel.push(checkboxes[i].value);
+                console.log(checkboxes[i].value)
+                console.log(skelsel);
+            }
+        }
+        console.log(skelsel.length);
+        if(skelsel.length==1){
+            postbutton2.disabled = false;
+        }
+        else{
+            postbutton2.disabled = true;
+        }
+    });
+
+$(document).on("click","#skel-del",async function(){
+    for(let i = 0; i < skelsel.length; i++){
+        await deleteDoc(doc(db, "skeleton", skelsel[i]));
+    }
+    loadTables('tbody2','cbox2',q2);
+    alert("Deleted");
+});
+
+
+$("#skel-post").click(function(){ 
+    localStorage.removeItem("postid2");
+    location.href="skeletonpost.html";
+});
+
+
+$("#skel-edit").click(function(){ 
+    localStorage.setItem("postid2",skelsel[0]);
+    location.href="skeletonpost.html";
+});
+
 
 

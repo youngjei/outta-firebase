@@ -816,7 +816,7 @@ color: #6F6F6F;
 }
 
 .top{
-    width: 1920px;
+    width: 1620px;
     height: 415px;
     padding-left: 300px;
     padding-top: 87px;
@@ -863,7 +863,6 @@ color: #6F6F6F;
 .data-cbox{
     padding: 40px 45px 40px 45px;
     width: 120px;
-
 }
 
 .tables{
@@ -1032,10 +1031,16 @@ button:disabled {
 }
 
 .skel-div{
-    padding: 20px 30px 20px 30px;
+    padding: 40px 40px 40px 40px;
     border: 2px solid #D5D5D5;
     border-radius: 10px;
+    width: 1100px;
     background-color: #EFF1FF;
+}
+
+.skel-cbox{
+    padding: 40px 45px 40px 45px;
+    width: 120px;
 }
 
 #tbody2 th{
